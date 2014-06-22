@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+
+<script>
+    function init() {
+        // create a function to subscribe to topics
+        var mySubscriber = function( msg, data ){
+            console.log( "---->" + msg, data );
+        };
+
+        // add the function to the list of subscribers for a particular topic
+        // we're keeping the returned token, in order to be able to unsubscribe
+        // from the topic later on
+        var token = PubSub.subscribe( 'MY TOPIC', mySubscriber );
+
+    }
+
+    function mamma() {
+        console.log("click");
+        // publish a topic asyncronously
+        PubSub.publish( 'MY TOPIC', 'hello world!' );
+    }
+
+</script>
+
+<body onload="init()">
+
+<input type="button" onclick="mamma()">
+
+
+<script src="bower_components/pubsub-js/src/pubsub.js"></script>
+
+</body>
+</html>
